@@ -1,0 +1,36 @@
+<div class="container">
+  <label for="">From</label>
+  <input
+    type="text"
+    class="form-control"
+    placeholder="From"
+    [(ngModel)]="from"
+  />
+  <label for="">To</label>
+  <input type="text" class="form-control" placeholder="To" [(ngModel)]="to" />
+  <br />
+  <button
+    class="btn btn-default"
+    [disabled]="from === '' || to === ''"
+    (click)="search()"
+  >
+    Search
+  </button>
+</div>
+
+<table class="table">
+  <thead>
+    <td>From</td>
+    <td>To</td>
+  </thead>
+  <tbody>
+    <tr *ngIf="flights.length === 0">
+      <td colspan="2">No flights found</td>
+    </tr>
+
+    <tr *ngFor="let flight of flights">
+      <td>{{ flight.from }}</td>
+      <td>{{ flight.to }}</td>
+    </tr>
+  </tbody>
+</table>
