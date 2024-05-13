@@ -1,36 +1,76 @@
-<div class="container">
-  <label for="">From</label>
-  <input
-    type="text"
-    class="form-control"
-    placeholder="From"
-    [(ngModel)]="from"
-  />
-  <label for="">To</label>
-  <input type="text" class="form-control" placeholder="To" [(ngModel)]="to" />
-  <br />
-  <button
-    class="btn btn-default"
-    [disabled]="from === '' || to === ''"
-    (click)="search()"
-  >
-    Search
-  </button>
+<div class="header">
+  <h2 class="title">Flight Search</h2>
 </div>
 
-<table class="table">
+<form>
+  <div class="form-group">
+    <label>From:</label>
+    <input class="form-control" [(ngModel)]="from" name="from" />
+  </div>
+  <div class="form-group">
+    <label>To:</label>
+    <input class="form-control" [(ngModel)]="to" name="to" />
+  </div>
+
+  <div class="form-group">
+    <button
+      class="btn btn-default"
+      [disabled]="from === '' || to === ''"
+      (click)="search()"
+    >
+      Search
+    </button>
+  </div>
+</form>
+
+<table class="table table-condensed">
   <thead>
-    <td>From</td>
-    <td>To</td>
+    <tr>
+      <th>Id</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Date</th>
+      <th></th>
+    </tr>
   </thead>
   <tbody>
-    <tr *ngIf="flights.length === 0">
-      <td colspan="2">No flights found</td>
-    </tr>
-
     <tr *ngFor="let flight of flights">
+      <td>{{ flight.id }}</td>
       <td>{{ flight.from }}</td>
       <td>{{ flight.to }}</td>
+      <td>{{ flight.date | date : "dd.MM.yyyy" }}</td>
+      <td>
+        <a (click)="selectFlight(flight)">Select</a>
+      </td>
     </tr>
   </tbody>
 </table>
+
+<div *ngIf="selectFlight">
+  <pre>{{ selectedFlight | json }}</pre>
+</div>
+
+<div *ngIf="selectedFlight">
+  <div>
+    {{ message }}
+  </div>
+
+  <div class="form-group">
+    <label>Id</label>
+    <input class="form-control" [(ngModel)]="selectedFlight.id" name="id" />
+  </div>
+
+  <div class="form-group">
+    <label>From</label>
+    <input class="form-control" [(ngModel)]="selectedFlight.from" name="from" />
+  </div>
+
+  <div class="form-group">
+    <label>To</label>
+    <input class="form-control" [(ngModel)]="selectedFlight.to" name="to" />
+  </div>
+
+  <div class="form-group">
+    <button class="btn btn-default" (click)="save()">Save</button>
+  </div>
+</div>
