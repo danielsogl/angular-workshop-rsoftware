@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FlightService } from '../flight.service';
 import { DefaultFlightService } from '../default-flight.service';
 import { Flight } from '../../../entities/flight';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-flight-search',
@@ -12,6 +13,8 @@ import { Flight } from '../../../entities/flight';
   ],
 })
 export class FlightSearchComponent {
+  @ViewChild('form', { static: true }) form!: NgForm;
+
   from = 'London';
   to = 'Wien';
 
@@ -24,7 +27,9 @@ export class FlightSearchComponent {
   constructor(private flightService: FlightService) { }
 
   search(): void {
-    this.flightService.search(this.from, this.to).subscribe({
+    const { from, to } = this.form.value as { from: string, to: string };
+
+    this.flightService.search(from, to).subscribe({
       next: flights => {
         this.flights = flights;
       },

@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+input.ng-dirty.ng-invalid {
+  border-left: darkred 5px solid;
+}
+
+input.ng-dirty.ng-valid {
+  border-left: darkgreen 5px solid;
+}

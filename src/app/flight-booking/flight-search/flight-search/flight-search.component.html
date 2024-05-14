@@ -2,24 +2,45 @@
   <h2 class="title">Flight Search</h2>
 </div>
 
-<form>
+<form #form="ngForm">
   <div class="form-group">
     <label>From:</label>
-    <input class="form-control" [(ngModel)]="from" name="from" />
+    <input
+      class="form-control"
+      [(ngModel)]="from"
+      name="from"
+      required
+      minlength="3"
+    />
   </div>
+
+  <div>
+    <pre>Errors: {{ form?.controls?.["from"]?.errors | json }}</pre>
+  </div>
+
   <div class="form-group">
     <label>To:</label>
-    <input class="form-control" [(ngModel)]="to" name="to" />
+    <input
+      class="form-control"
+      [(ngModel)]="to"
+      name="to"
+      required
+      minlength="3"
+    />
   </div>
 
   <div class="form-group">
     <button
       class="btn btn-default"
-      [disabled]="from === '' || to === ''"
+      [disabled]="form.invalid"
       (click)="search()"
     >
       Search
     </button>
+  </div>
+
+  <div>
+    <pre>{{ form.value | json }}</pre>
   </div>
 </form>
 
@@ -33,32 +54,6 @@
   <h2>Basket:</h2>
   <pre>{{ basket | json }}</pre>
 </div>
-
-<!-- <table class="table table-condensed">
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>From</th>
-      <th>To</th>
-      <th>Date</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr
-      *ngFor="let flight of flights"
-      [ngClass]="{ 'table-danger': flight.delayed }"
-    >
-      <td>{{ flight.id }}</td>
-      <td>{{ flight.from | city : "short" }}</td>
-      <td>{{ flight.to | cityAsync : "long" | async }}</td>
-      <td>{{ flight.date | date }}</td>
-      <td>
-        <a (click)="selectFlight(flight)">Select</a>
-      </td>
-    </tr>
-  </tbody>
-</table> -->
 
 <div *ngIf="selectFlight">
   <pre>{{ selectedFlight | json }}</pre>
