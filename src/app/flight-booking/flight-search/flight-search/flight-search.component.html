@@ -23,7 +23,18 @@
   </div>
 </form>
 
-<table class="table table-condensed">
+<app-flight-card
+  *ngFor="let flight of flights | slice : 0 : 1"
+  [flight]="flight"
+  [(selected)]="basket[flight.id]"
+/>
+
+<div>
+  <h2>Basket:</h2>
+  <pre>{{ basket | json }}</pre>
+</div>
+
+<!-- <table class="table table-condensed">
   <thead>
     <tr>
       <th>Id</th>
@@ -47,7 +58,7 @@
       </td>
     </tr>
   </tbody>
-</table>
+</table> -->
 
 <div *ngIf="selectFlight">
   <pre>{{ selectedFlight | json }}</pre>

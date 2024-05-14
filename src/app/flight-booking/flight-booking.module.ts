@@ -9,12 +9,14 @@ import { DummyFlightService } from './flight-search/dummy-flight.service';
 import { DefaultFlightService } from './flight-search/default-flight.service';
 import { BASE_URL } from '../config/base-url.token';
 import { FLIGHT_BOOKING_BASE_URL } from './config/config';
+import { FlightCardComponent } from './flight-search/flight-card/flight-card.component';
 
 
 
 @NgModule({
   declarations: [
     FlightSearchComponent,
+    FlightCardComponent,
   ],
   imports: [
     CommonModule,

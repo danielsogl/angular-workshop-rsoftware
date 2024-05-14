@@ -19,6 +19,8 @@ export class FlightSearchComponent {
   selectedFlight: Flight | undefined;
   message = '';
 
+  basket: Record<number, boolean> = {};
+
   constructor(private flightService: FlightService) { }
 
   search(): void {
