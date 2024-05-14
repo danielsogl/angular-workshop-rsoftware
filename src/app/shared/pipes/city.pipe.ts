@@ -1,11 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+export type CityFormat = 'short' | 'long';
+
 @Pipe({
   name: 'city',
 })
 export class CityPipe implements PipeTransform {
-  transform(value: string, format: 'short' | 'long' = 'short'): string {
-    console.log('CityPipe', value, format);
+  transform(value: string, format: CityFormat = 'short'): string {
     switch (value) {
       case 'London':
         return format === 'short' ? 'LHR' : 'London';

@@ -2,8 +2,8 @@ import { Inject, Injectable, inject } from '@angular/core';
 import { FlightService } from './flight.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Flight } from '../entities/flight';
-import { BASE_URL } from '../config/base-url.token';
+import { BASE_URL } from '../../config/base-url.token';
+import { Flight } from '../../entities/flight';
 
 @Injectable()
 export class DefaultFlightService implements FlightService {

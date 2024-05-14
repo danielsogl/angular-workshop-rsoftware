@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { AirPortService } from '../../flight-search/air-port.service';
 import { Observable } from 'rxjs';
+import { AirPortService } from '../services/air-port.service';
 
 @Pipe({
   name: 'cityAsync'
