@@ -34,10 +34,13 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let flight of flights">
+    <tr
+      *ngFor="let flight of flights"
+      [ngClass]="{ 'table-danger': flight.delayed }"
+    >
       <td>{{ flight.id }}</td>
-      <td>{{ flight.from }}</td>
-      <td>{{ flight.to }}</td>
+      <td>{{ flight.from | city : "short" }}</td>
+      <td>{{ flight.to | cityAsync : "long" | async }}</td>
       <td>{{ flight.date | date }}</td>
       <td>
         <a (click)="selectFlight(flight)">Select</a>

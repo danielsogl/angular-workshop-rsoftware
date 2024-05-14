@@ -9,6 +9,9 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BASE_URL } from './config/base-url.token';
 import { DATE_PIPE_DEFAULT_OPTIONS, DatePipeConfig } from '@angular/common';
+import { CityPipe } from './shared/pipes/city.pipe';
+import { StatusFilterPipe } from './shared/pipes/status-filter.pipe';
+import { CityAsyncPipe } from './shared/pipes/city-async.pipe';
 
 @NgModule({
    imports: [
@@ -20,7 +23,10 @@ import { DATE_PIPE_DEFAULT_OPTIONS, DatePipeConfig } from '@angular/common';
       AppComponent,
       SidebarComponent,
       NavbarComponent,
-      FlightSearchComponent
+      FlightSearchComponent,
+      CityPipe,
+      StatusFilterPipe,
+      CityAsyncPipe
    ],
    providers: [
       { provide: BASE_URL, useValue: 'https://demo.angulararchitects.io/api/flight' },
