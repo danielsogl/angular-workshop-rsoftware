@@ -7,6 +7,8 @@ import { CardComponent } from './components/card/card/card.component';
 import { CardTitleComponent } from './components/card/card-title/card-title.component';
 import { CardContentComponent } from './components/card/card-content/card-content.component';
 import { CardFooterComponent } from './components/card/card-footer/card-footer.component';
+import { HighlightDirective } from './directives/highlight.directive';
+import { TooltipDirective } from './directives/tooltip.directive';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { CardFooterComponent } from './components/card/card-footer/card-footer.c
     CardComponent,
     CardTitleComponent,
     CardContentComponent,
-    CardFooterComponent
+    CardFooterComponent,
+    HighlightDirective,
+    TooltipDirective
   ],
   imports: [
     CommonModule
@@ -29,6 +33,8 @@ import { CardFooterComponent } from './components/card/card-footer/card-footer.c
     CardTitleComponent,
     CardContentComponent,
     CardFooterComponent,
+    HighlightDirective,
+    TooltipDirective,
   ]
 })
 export class SharedModule { }
