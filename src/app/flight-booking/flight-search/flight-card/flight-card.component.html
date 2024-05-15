@@ -19,7 +19,7 @@
   </div>
 </div> -->
 
-<app-card [selected]="selected">
+<app-card [selected]="selected" (click)="openEditPage()">
   <app-card-title>
     {{ item.from | city : "short" }} - {{ item.to | city : "short" }}
   </app-card-title>

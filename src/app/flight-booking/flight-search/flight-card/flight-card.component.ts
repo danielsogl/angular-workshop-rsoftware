@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, booleanAttribute } from '@angular/core';
 import { Flight } from '../../../entities/flight';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-flight-card',
@@ -18,7 +19,7 @@ export class FlightCardComponent implements OnInit, OnDestroy, OnChanges {
     this.selectedChange.emit(!this.selected);
   }
 
-  constructor() {
+  constructor(private router: Router) {
     console.log('FlightCardComponent.constructor', this.item);
   }
 
@@ -32,5 +33,14 @@ export class FlightCardComponent implements OnInit, OnDestroy, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log('FlightCardComponent.ngOnChanges', changes);
+  }
+
+  openEditPage(): void {
+    this.router.navigate(['/flight-booking', this.item.id, 'edit'], {
+      queryParams: {
+        from: this.item.from,
+        to: this.item.to,
+      },
+    });
   }
 }

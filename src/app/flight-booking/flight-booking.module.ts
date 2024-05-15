@@ -10,19 +10,34 @@ import { DefaultFlightService } from './flight-search/default-flight.service';
 import { BASE_URL } from '../config/base-url.token';
 import { FLIGHT_BOOKING_BASE_URL } from './config/config';
 import { FlightCardComponent } from './flight-search/flight-card/flight-card.component';
+import { FlightEditComponent } from './flight-search/flight-edit/flight-edit.component';
+import { Router, RouterModule, Routes } from '@angular/router';
 
-
+export const FLIGHT_ROUTES: Routes = [
+  {
+    path: '',
+    component: FlightSearchComponent,
+    title: 'Flight Search',
+  },
+  {
+    path: ':id/edit',
+    component: FlightEditComponent,
+    title: 'Flight Edit',
+  },
+];
 
 @NgModule({
   declarations: [
     FlightSearchComponent,
     FlightCardComponent,
+    FlightEditComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
+    RouterModule.forChild(FLIGHT_ROUTES),
   ],
   providers: [
     {
