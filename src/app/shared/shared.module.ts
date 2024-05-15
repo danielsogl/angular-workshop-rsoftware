@@ -10,6 +10,7 @@ import { CardFooterComponent } from './components/card/card-footer/card-footer.c
 import { HighlightDirective } from './directives/highlight.directive';
 import { TooltipDirective } from './directives/tooltip.directive';
 import { UserRoleDirective } from './directives/user-role.directive';
+import { ClickWithWarningDirective } from './controls/click-with-warning.directive';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { UserRoleDirective } from './directives/user-role.directive';
     CardFooterComponent,
     HighlightDirective,
     TooltipDirective,
-    UserRoleDirective
+    UserRoleDirective,
+    ClickWithWarningDirective
   ],
   imports: [
     CommonModule
@@ -38,6 +40,7 @@ import { UserRoleDirective } from './directives/user-role.directive';
     HighlightDirective,
     TooltipDirective,
     UserRoleDirective,
+    ClickWithWarningDirective,
   ]
 })
 export class SharedModule { }
