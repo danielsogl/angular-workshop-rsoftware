@@ -1,8 +1,15 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FlightService } from '../flight.service';
 import { DefaultFlightService } from '../default-flight.service';
 import { Flight } from '../../../entities/flight';
-import { NgForm } from '@angular/forms';
+import { Form, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { CityValidators } from '../../../shared/validators/city.validator';
+
+export interface SearchForm {
+  from: FormControl<string>;
+  to: FormControl<string>;
+  withValidators: FormControl<boolean>;
+}
 
 @Component({
   selector: 'app-flight-search',
@@ -12,8 +19,15 @@ import { NgForm } from '@angular/forms';
     { provide: FlightService, useClass: DefaultFlightService }
   ],
 })
-export class FlightSearchComponent {
-  @ViewChild('form', { static: true }) form!: NgForm;
+export class FlightSearchComponent implements OnInit {
+  // @ViewChild('form', { static: true }) form!: NgForm;
+
+  private readonly validators = [
+    Validators.required,
+    Validators.minLength(3),
+    CityValidators.validateCity(['Graz', 'Hamburg', 'Wien', 'Zürich', 'Foo'])
+  ];
+  private readonly asyncValidators = [CityValidators.asyncValidateCity(this.flightService)];
 
   from = 'London';
   to = 'Wien';
@@ -24,10 +38,40 @@ export class FlightSearchComponent {
 
   basket: Record<number, boolean> = {};
 
+  form = new FormGroup<SearchForm>({
+    from: new FormControl('London', {
+      validators: this.validators,
+      asyncValidators: this.asyncValidators,
+      nonNullable: true,
+    }),
+    to: new FormControl('Wien', {
+      validators: this.validators,
+      asyncValidators: this.asyncValidators,
+      nonNullable: true,
+    }),
+    withValidators: new FormControl(true, { nonNullable: true }),
+  }, {
+    validators: [CityValidators.roundTrip]
+  });
+
   constructor(private flightService: FlightService) { }
 
+  ngOnInit(): void {
+    this.form.controls.withValidators.valueChanges.subscribe((withValidators) => {
+      ;
+      if (withValidators) {
+        this.form.controls.from.setValidators(this.validators);
+        this.form.controls.to.setValidators(this.validators);
+      } else {
+        this.form.controls.from.clearValidators();
+        this.form.controls.to.clearValidators();
+      }
+      this.form.updateValueAndValidity();
+    });
+  }
+
   search(): void {
-    const { from, to } = this.form.value as { from: string, to: string };
+    const { from, to } = this.form.getRawValue();
 
     this.flightService.search(from, to).subscribe({
       next: flights => {

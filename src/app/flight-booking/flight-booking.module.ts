@@ -1,7 +1,7 @@
 import { ModuleWithProviders, NgModule, isDevMode } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlightSearchComponent } from './flight-search/flight-search/flight-search.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { FlightService } from './flight-search/flight.service';
 import { HttpClient } from '@angular/common/http';
@@ -21,6 +21,7 @@ import { FlightCardComponent } from './flight-search/flight-card/flight-card.com
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     SharedModule,
   ],
   providers: [

@@ -10,31 +10,24 @@
   </div>
 </ng-template>
 
-<form #form="ngForm" *appUserRole="'user'">
+<form *appUserRole="'user'" [formGroup]="form">
   <div class="form-group">
     <label>From:</label>
-    <input
-      class="form-control"
-      [(ngModel)]="from"
-      name="from"
-      required
-      minlength="3"
-    />
+    <input class="form-control" formControlName="from" />
   </div>
 
   <div>
-    <pre>Errors: {{ form?.controls?.["from"]?.errors | json }}</pre>
+    <pre>Errors: {{ form.controls["from"].errors | json }}</pre>
   </div>
 
   <div class="form-group">
     <label>To:</label>
-    <input
-      class="form-control"
-      [(ngModel)]="to"
-      name="to"
-      required
-      minlength="3"
-    />
+    <input class="form-control" formControlName="to" />
+  </div>
+
+  <div class="form-group">
+    <input type="checkbox" formControlName="withValidators" />
+    <label class="form-check-label"> With validators </label>
   </div>
 
   <div class="form-group">
@@ -49,6 +42,10 @@
 
   <div>
     <pre>{{ form.value | json }}</pre>
+  </div>
+
+  <div>
+    <pre>Form Errors: {{ form.errors | json }}</pre>
   </div>
 </form>
 
