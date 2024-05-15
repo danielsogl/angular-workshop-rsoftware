@@ -9,6 +9,7 @@ import { CardContentComponent } from './components/card/card-content/card-conten
 import { CardFooterComponent } from './components/card/card-footer/card-footer.component';
 import { HighlightDirective } from './directives/highlight.directive';
 import { TooltipDirective } from './directives/tooltip.directive';
+import { UserRoleDirective } from './directives/user-role.directive';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TooltipDirective } from './directives/tooltip.directive';
     CardContentComponent,
     CardFooterComponent,
     HighlightDirective,
-    TooltipDirective
+    TooltipDirective,
+    UserRoleDirective
   ],
   imports: [
     CommonModule
@@ -35,6 +37,7 @@ import { TooltipDirective } from './directives/tooltip.directive';
     CardFooterComponent,
     HighlightDirective,
     TooltipDirective,
+    UserRoleDirective,
   ]
 })
 export class SharedModule { }
