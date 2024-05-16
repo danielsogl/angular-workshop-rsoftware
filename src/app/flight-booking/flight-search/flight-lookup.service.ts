@@ -45,7 +45,9 @@ export class FlightLookupFactory {
       return of([]);
     }
 
-    return this.flightService.search(filter, '').pipe(
+    this.flightService.search(filter, '');
+
+    return this.flightService.flights$.pipe(
       catchError((err) => {
         this.errorSubject.next(err);
         return of([]);

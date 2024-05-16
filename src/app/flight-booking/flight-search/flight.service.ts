@@ -6,8 +6,14 @@ import { Flight } from '../../entities/flight';
   providedIn: 'root',
 })
 export abstract class FlightService {
-  abstract search(from: string, to: string): Observable<Flight[]>;
-  abstract save(flight: Flight): Observable<Flight>;
-  abstract flightById(id: number): Observable<Flight>;
+  abstract readonly flightsMap$: Observable<Record<number, Flight>>;
+  abstract readonly flights$: Observable<Flight[]>;
+  abstract readonly loading$: Observable<boolean>;
+  abstract readonly error$: Observable<string>;
+  abstract readonly message$: Observable<string>;
+
+  abstract search(from: string, to: string): void;
+  abstract save(flight: Flight): void;
+  abstract flightById(id: number): void;
 }
 

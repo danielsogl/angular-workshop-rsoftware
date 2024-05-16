@@ -37,7 +37,8 @@ export class CityValidators {
 
   static asyncValidateCity(flightService: FlightService) {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
-      return flightService.search(control.value, '').pipe(
+      flightService.search(control.value, '');
+      return flightService.flights$.pipe(
         map((flight) => flight.length === 0 ? {
           asyncCity: {
             currentValue: control.value,

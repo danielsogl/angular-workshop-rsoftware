@@ -3,7 +3,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { FlightService } from '../flight.service';
 import { Flight } from '../../../entities/flight';
-import { Subject, catchError, filter, interval, map, switchMap, takeUntil } from 'rxjs';
+import { Subject, catchError, filter, interval, map, switchMap, takeUntil, tap } from 'rxjs';
 
 @Component({
   selector: 'app-flight-edit',
@@ -20,7 +20,9 @@ export class FlightEditComponent implements OnInit, OnDestroy {
     filter(params => params.has('id')),
     map(params => +params.get('id')!),
     filter(id => !isNaN(id)),
-    switchMap(id => this.flightService.flightById(id).pipe(
+    tap(id => this.flightService.flightById(id)),
+    switchMap(id => this.flightService.flightsMap$.pipe(
+      map(flightsMap => flightsMap[id]),
       // catch inner observable error
       catchError(() => []),
     )),
@@ -48,7 +50,10 @@ export class FlightEditComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(params => {
       console.log(params.get('id'));
-      this.flightService.flightById(+params.get('id')!).subscribe(flight => {
+      this.flightService.flightById(+params.get('id')!);
+      this.flightService.flightsMap$.pipe(
+        map(flightsMap => flightsMap[+params.get('id')!]),
+      ).subscribe(flight => {
         this.flight = flight;
         console.log(flight);
       });

@@ -32,9 +32,9 @@ export class FlightSearchComponent implements OnInit {
   from = 'London';
   to = 'Wien';
 
-  flights: Flight[] = [];
+  // flights: Flight[] = [];
   selectedFlight: Flight | undefined;
-  message = '';
+  // message = '';
 
   basket: Record<number, boolean> = {};
 
@@ -54,7 +54,7 @@ export class FlightSearchComponent implements OnInit {
     validators: [CityValidators.roundTrip]
   });
 
-  constructor(private flightService: FlightService) { }
+  constructor(protected flightService: FlightService) { }
 
   ngOnInit(): void {
     this.form.controls.withValidators.valueChanges.subscribe((withValidators) => {
@@ -73,14 +73,15 @@ export class FlightSearchComponent implements OnInit {
   search(): void {
     const { from, to } = this.form.getRawValue();
 
-    this.flightService.search(from, to).subscribe({
-      next: flights => {
-        this.flights = flights;
-      },
-      error: err => {
-        console.error('err', err);
-      },
-    });
+    // this.flightService.search(from, to).subscribe({
+    //   next: flights => {
+    //     this.flights = flights;
+    //   },
+    //   error: err => {
+    //     console.error('err', err);
+    //   },
+    // });
+    this.flightService.search(from, to);
   }
 
   selectFlight(f: Flight): void {
@@ -90,15 +91,16 @@ export class FlightSearchComponent implements OnInit {
   save(): void {
     if (!this.selectedFlight) return;
 
-    this.flightService.save(this.selectedFlight).subscribe({
-      next: flight => {
-        this.selectedFlight = flight;
-        this.message = 'Update successful!';
-      },
-      error: err => {
-        this.message = 'Error on updating the Flight';
-        console.error(this.message, err);
-      },
-    });
+    // this.flightService.save(this.selectedFlight).subscribe({
+    //   next: flight => {
+    //     this.selectedFlight = flight;
+    //     this.message = 'Update successful!';
+    //   },
+    //   error: err => {
+    //     this.message = 'Error on updating the Flight';
+    //     console.error(this.message, err);
+    //   },
+    // });
+    this.flightService.save(this.selectedFlight);
   }
 }
