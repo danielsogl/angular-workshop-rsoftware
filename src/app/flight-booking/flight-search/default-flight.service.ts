@@ -26,4 +26,8 @@ export class DefaultFlightService implements FlightService {
     return this.http
       .post<Flight>(this.baseUrl, flight, { headers })
   }
+
+  flightById(id: number): Observable<Flight> {
+    return this.http.get<Flight>(this.baseUrl + '/' + id);
+  }
 }

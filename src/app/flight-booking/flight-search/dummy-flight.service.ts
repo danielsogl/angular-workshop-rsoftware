@@ -39,4 +39,15 @@ export class DummyFlightService implements FlightService {
   save(flight: Flight): Observable<Flight> {
     return of(flight);
   }
+
+  flightById(id: number): Observable<Flight> {
+    return of({
+      "id": id,
+      "from": "London",
+      "to": "Wien",
+      "date": "2024-06-01T15:18:09.698166+00:00",
+      "delayed": true,
+      "flightBookings": []
+    });
+  }
 }

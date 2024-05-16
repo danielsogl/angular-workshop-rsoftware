@@ -49,9 +49,9 @@ export const FLIGHT_ROUTES: Routes = [
   providers: [
     {
       provide: FlightService, useFactory: (http: HttpClient, baseUrl: string) => {
-        if (isDevMode()) {
-          return new DummyFlightService();
-        }
+        // if (isDevMode()) {
+        //   return new DummyFlightService();
+        // }
 
         return new DefaultFlightService(http, baseUrl);
       },
