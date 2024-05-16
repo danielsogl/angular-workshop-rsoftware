@@ -33,6 +33,8 @@ export class FlightSearchComponent implements OnInit {
   from = 'London';
   to = 'Wien';
 
+  public dummyData = [1, 2, 3, 4, 5];
+
   // flights: Flight[] = [];
   selectedFlight: Flight | undefined;
   // message = '';
@@ -69,6 +71,10 @@ export class FlightSearchComponent implements OnInit {
       }
       this.form.updateValueAndValidity();
     });
+  }
+
+  addDummyData(): void {
+    this.dummyData = [...this.dummyData, this.dummyData.length + 1];
   }
 
   search(): void {

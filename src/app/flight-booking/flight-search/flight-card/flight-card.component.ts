@@ -1,17 +1,19 @@
-import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, booleanAttribute } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, NgZone, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, booleanAttribute, inject } from '@angular/core';
 import { Flight } from '../../../entities/flight';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-flight-card',
   templateUrl: './flight-card.component.html',
-  styleUrl: './flight-card.component.scss'
+  styleUrl: './flight-card.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FlightCardComponent implements OnInit, OnDestroy, OnChanges {
   @Input({ alias: 'flight', required: true }) item!: Flight;
   @Input({
     transform: booleanAttribute,
   }) selected = false;
+  @Input() dummyData: number[] = [];
 
   @Output() selectedChange = new EventEmitter<boolean>();
 
@@ -19,7 +21,12 @@ export class FlightCardComponent implements OnInit, OnDestroy, OnChanges {
     this.selectedChange.emit(!this.selected);
   }
 
-  constructor(private router: Router) {
+  private element = inject(ElementRef);
+  private zone = inject(NgZone);
+
+  constructor(
+    private router: Router,
+  ) {
     console.log('FlightCardComponent.constructor', this.item);
   }
 
@@ -42,5 +49,18 @@ export class FlightCardComponent implements OnInit, OnDestroy, OnChanges {
         to: this.item.to,
       },
     });
+  }
+
+  blink() {
+    // Dirty Hack used to visualize the change detector
+    this.element.nativeElement.firstChild.style.backgroundColor = 'crimson';
+
+    this.zone.runOutsideAngular(() => {
+      setTimeout(() => {
+        this.element.nativeElement.firstChild.style.backgroundColor = 'white';
+      }, 1000);
+    });
+
+    return null;
   }
 }

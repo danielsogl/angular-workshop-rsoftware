@@ -1,4 +1,4 @@
-<!-- <div class="card" [ngStyle]="{ 'background-color': selected ? 'red' : null }">
+<div class="card" [ngStyle]="{ 'background-color': selected ? 'red' : null }">
   <div class="card-header">
     <h4 class="card-title">
       {{ item.from | city : "short" }} - {{ item.to | city : "short" }}
@@ -17,9 +17,9 @@
       </button>
     </div>
   </div>
-</div> -->
+</div>
 
-<app-card [selected]="selected" (click)="openEditPage()">
+<!-- <app-card [selected]="selected" (click)="openEditPage()">
   <app-card-title>
     {{ item.from | city : "short" }} - {{ item.to | city : "short" }}
   </app-card-title>
@@ -36,9 +36,10 @@
       {{ selected ? "Unselect" : "Select" }}
     </button>
   </app-card-footer>
-</app-card>
+</app-card> -->
 
 <!-- <div style="color: red">
   <ng-content select="#header" />
 </div>
 <ng-content select=".footer" /> -->
+{{ blink() }}

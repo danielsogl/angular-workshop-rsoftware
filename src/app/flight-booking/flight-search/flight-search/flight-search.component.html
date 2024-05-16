@@ -49,9 +49,12 @@
   </div>
 </form>
 
+<button class="btn btn-default" (click)="addDummyData()">Add dummy data</button>
+
 <app-flight-card
   *ngFor="let flight of facade.flights$ | async"
   [flight]="flight"
+  [dummyData]="dummyData"
   [(selected)]="basket[flight.id]"
 />
 
