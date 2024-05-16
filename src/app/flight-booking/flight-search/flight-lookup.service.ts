@@ -34,6 +34,8 @@ export class FlightLookupFactory {
   }).pipe(
     filter((combined) => combined.online),
     tap(() => this.loadingSubject.next(true)),
+    // higher order operator examples
+    // https://blog.angular-university.io/rxjs-higher-order-mapping/
     switchMap((combined) => this.load(combined.input)),
     tap(() => this.loadingSubject.next(false))
   );
