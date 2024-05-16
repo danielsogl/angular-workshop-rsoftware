@@ -11,7 +11,8 @@ import { BASE_URL } from '../config/base-url.token';
 import { FLIGHT_BOOKING_BASE_URL } from './config/config';
 import { FlightCardComponent } from './flight-search/flight-card/flight-card.component';
 import { FlightEditComponent } from './flight-search/flight-edit/flight-edit.component';
-import { Router, RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { FlightLookupComponent } from './flight-search/flight-lookup/flight-lookup.component';
 
 export const FLIGHT_ROUTES: Routes = [
   {
@@ -24,6 +25,11 @@ export const FLIGHT_ROUTES: Routes = [
     component: FlightEditComponent,
     title: 'Flight Edit',
   },
+  {
+    path: 'lookup',
+    component: FlightLookupComponent,
+    title: 'Flight Lookup',
+  }
 ];
 
 @NgModule({
@@ -31,6 +37,7 @@ export const FLIGHT_ROUTES: Routes = [
     FlightSearchComponent,
     FlightCardComponent,
     FlightEditComponent,
+    FlightLookupComponent,
   ],
   imports: [
     CommonModule,
