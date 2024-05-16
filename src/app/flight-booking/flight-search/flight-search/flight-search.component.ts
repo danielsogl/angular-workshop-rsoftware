@@ -4,6 +4,7 @@ import { DefaultFlightService } from '../default-flight.service';
 import { Flight } from '../../../entities/flight';
 import { Form, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { CityValidators } from '../../../shared/validators/city.validator';
+import { FlightSearchFacadeService } from '../flight-search-facade.service';
 
 export interface SearchForm {
   from: FormControl<string>;
@@ -54,7 +55,7 @@ export class FlightSearchComponent implements OnInit {
     validators: [CityValidators.roundTrip]
   });
 
-  constructor(protected flightService: FlightService) { }
+  constructor(protected facade: FlightSearchFacadeService, protected flightService: FlightService) { }
 
   ngOnInit(): void {
     this.form.controls.withValidators.valueChanges.subscribe((withValidators) => {
@@ -81,7 +82,7 @@ export class FlightSearchComponent implements OnInit {
     //     console.error('err', err);
     //   },
     // });
-    this.flightService.search(from, to);
+    this.facade.search(from, to);
   }
 
   selectFlight(f: Flight): void {
