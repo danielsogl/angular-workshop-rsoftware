@@ -12,8 +12,8 @@
 
 <form *appUserRole="'user'" [formGroup]="form">
   <div class="form-group">
-    <label>From:</label>
-    <input class="form-control" formControlName="from" />
+    <label for="from">From:</label>
+    <input class="form-control" formControlName="from" name="from" />
   </div>
 
   <div>
@@ -21,13 +21,19 @@
   </div>
 
   <div class="form-group">
-    <label>To:</label>
-    <input class="form-control" formControlName="to" />
+    <label for="to">To:</label>
+    <input class="form-control" formControlName="to" name="to" />
   </div>
 
   <div class="form-group">
-    <input type="checkbox" formControlName="withValidators" />
-    <label class="form-check-label"> With validators </label>
+    <input
+      type="checkbox"
+      formControlName="withValidators"
+      name="withValidators"
+    />
+    <label class="form-check-label" for="withValidators">
+      With validators
+    </label>
   </div>
 
   <div class="form-group">
@@ -73,17 +79,17 @@
   </div>
 
   <div class="form-group">
-    <label>Id</label>
+    <label for="id">Id</label>
     <input class="form-control" [(ngModel)]="selectedFlight.id" name="id" />
   </div>
 
   <div class="form-group">
-    <label>From</label>
+    <label for="from">From</label>
     <input class="form-control" [(ngModel)]="selectedFlight.from" name="from" />
   </div>
 
   <div class="form-group">
-    <label>To</label>
+    <label for="to">To</label>
     <input class="form-control" [(ngModel)]="selectedFlight.to" name="to" />
   </div>
 

@@ -1,0 +1,67 @@
+{
+  "root": true,
+  "ignorePatterns": ["projects/**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:prettier"
+      ],
+      "rules": {
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "app",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "app",
+            "style": "kebab-case"
+          }
+        ],
+        "@angular-eslint/no-forward-ref": "error",
+        "@angular-eslint/no-input-prefix": "error",
+        "@angular-eslint/no-input-rename": "error",
+        "@angular-eslint/no-output-on-prefix": "error",
+        "@angular-eslint/no-output-rename": "error",
+        "@angular-eslint/relative-url-prefix": "error",
+        "@angular-eslint/use-pipe-transform-interface": "error",
+        "@angular-eslint/no-host-metadata-property": "error",
+        "@angular-eslint/no-inputs-metadata-property": "error",
+        "@angular-eslint/no-outputs-metadata-property": "error",
+        "@angular-eslint/no-queries-metadata-property": "error",
+        "@angular-eslint/template/use-track-by-function": "error",
+        "@angular-eslint/template/no-call-expression": "error",
+        "@angular-eslint/template/prefer-self-closing-tags": "error",
+        "@angular-eslint/template/no-negated-async": "error",
+        "@angular-eslint/template/no-interpolation-in-attributes": "error",
+        "@angular-eslint/template/eqeqeq": "error",
+        "@angular-eslint/template/no-duplicate-attributes": "error",
+        "@angular-eslint/contextual-decorator": "error",
+        "@angular-eslint/contextual-lifecycle": "error",
+        "@angular-eslint/no-conflicting-lifecycle": "error",
+        "@angular-eslint/no-empty-lifecycle-method": "error",
+        "@angular-eslint/use-lifecycle-interface": "error"
+      }
+    },
+    {
+      "files": ["*.html"],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended",
+        "plugin:@angular-eslint/template/accessibility"
+      ],
+      "rules": {
+        "@angular-eslint/template/no-call-expression": "error"
+      }
+    }
+  ]
+}

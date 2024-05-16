@@ -1,18 +1,29 @@
-<div class="card" [ngStyle]="{ 'background-color': selected ? 'red' : null }">
+<div
+  class="card"
+  [ngStyle]="{
+    'background-color': selected ? 'red' : null
+  }"
+>
   <div class="card-header">
     <h4 class="card-title">
-      {{ item.from | city : "short" }} - {{ item.to | city : "short" }}
+      {{ item.from | city: "short" }}
+      -
+      {{ item.to | city: "short" }}
     </h4>
   </div>
   <div class="card-content">
     <div class="card-body">
-      <p class="card-text"><strong>Date:</strong> {{ item.date | date }}</p>
       <p class="card-text">
-        <strong>Delayed:</strong> {{ item.delayed ? "Yes" : "No" }}
+        <strong>Date:</strong>
+        {{ item.date | date }}
+      </p>
+      <p class="card-text">
+        <strong>Delayed:</strong>
+        {{ item.delayed ? "Yes" : "No" }}
       </p>
     </div>
     <div class="card-footer">
-      <button class="btn btn-default" (click)="toggleSelect()">
+      <button button class="btn btn-default" (click)="toggleSelect()">
         {{ selected ? "Unselect" : "Select" }}
       </button>
     </div>
